@@ -63,15 +63,17 @@ def add_member():
 
     return jsonify(), 200
 
+@app.route('/member/<int:member_id>', methods=['DELETE'])
 def delete_member(member_id):
-  
-    member = next((m for m in family['members'] if m['id'] == member_id), None)
-    if member is None:
+    success = jackson_family.delete_member(member_id)
+    if success:
+        return jsonify({'done': True}), 200
+    else:
         return jsonify({'error': 'Member not found'}), 404
- 
-    family['members'].remove(member)
 
-    return jsonify({'done': True}), 200
+
+
+
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':

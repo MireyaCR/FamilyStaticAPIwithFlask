@@ -8,7 +8,7 @@ update this file to implement the following already declared methods:
 """
 from random import randint
 
-class FamilyStructure:
+class Family:
     def __init__(self, last_name):
         self.last_name = last_name
         # example list of members
@@ -44,7 +44,7 @@ class FamilyStructure:
 
    
     def delete_member(self, id):
-        for i, memeber in inumerate(self.members):
+        for i, member in enumerate(self.members):
             if member["id"] == id:
                 del self._members[i]
                 return True
