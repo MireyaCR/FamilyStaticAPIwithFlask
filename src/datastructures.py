@@ -10,7 +10,7 @@ from random import randint
 
 class FamilyStructure:
     def __init__(self, last_name):
-        self.last_name = "last_name"
+        self.last_name = last_name
         # example list of members
         self._members = [{
             "id": self._generateId(),
@@ -37,50 +37,36 @@ class FamilyStructure:
     def _generateId(self):
         return randint(0, 99999999)
 
-    jackson_family = FamilyStructure("Jackson")
-    def add_member(member):
-        new_member = {
-            "id": jackson_family._generateId(),
-            "first_name": member.get("first_name", ""),
-            "last_name": jackson_family.last_name,
-            "age": member.get("age", 0),
-            "lucky_numbers": member.get("lucky_numbers", [])
-         }
-        jackson_family._members.append(new_member)
+    def add_member(self, member):
+        if "id" not in member:
+            member["id"] = self._generateId()
+        self._members.append(member) 
 
    
-    def delete_member(id):
-        for i in range(len(jackson_family._members)):
-            if jackson_family._members[i]["id"] == id:
-                del jackson_family._members[i]
+    def delete_member(self, id):
+        for i, memeber in inumerate(self.members):
+            if member["id"] == id:
+                del self._members[i]
                 return True
         return False
 
    
-    def update_member(id,member):
-        for i, m in enumerate(jackson_family._members):
-            if m["id"]== id:
-                member["id"]= id
-                member["last_name"]=jackson_family.last_name
-                jackson_family._members[i]={
-                    "id": member["id"],
-                    "first_name": membe.get("first_name",m["first_name"]),
-                    "last_name": member.get("last_name",m["last_name"]),
-                    "age": member.get("age",m["age"]),
-                    "lucky_numbers": member.get("lucky_numbers",m["lucky_numbers"])
-                }
+    def update_member(self, id, member):
+        for i, member in enumerate(self._members):
+            if member["id"] == id:
+                self._members[i] = member
                 return True
         return False
 
  
     def get_member(self, id):
-        for member in jackson_family._members:
+        for member in self._members:
             if member["id"] == id:
                 return member
         return None
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
-        return jackson_family._members
+        return self._members
 
     
