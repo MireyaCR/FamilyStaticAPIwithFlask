@@ -44,10 +44,10 @@ class Family:
 
    
     def delete_member(self, id):
-        for i, member in enumerate(self.members):
+        for i, member in enumerate(self._members):
             if member["id"] == id:
                 del self._members[i]
-                return True
+                return {'done': True}
         return False
 
    
@@ -56,7 +56,7 @@ class Family:
             if member["id"] == id:
                 self._members[i] = member
                 return True
-        return False
+        return {'done': False}
 
  
     def get_member(self, id):
